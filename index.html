@@ -1,0 +1,29 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>    
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<meta charset="utf-8"> 
+</head>
+
+<body>
+<h1> Velkommen! Her kan du laste opp mods til serveren vår! </h1> 
+<form method="post" action="/upload">
+  <div class="form-group">
+    <label for="username">Minecraft-brukernavn</label>
+    <input name="username" type="username" class="form-control" id="username"
+    placeholder="Skriv inn Minecraft-brukernavnet ditt!">
+  </div>
+  <div class="form-group">
+    <label for="modname">Navn på modden din</label>
+    <input name="modname" type="modname" class="form-control" id="modname" placeholder="Skriv inn navnet på modden din.">
+  </div>
+  <div class="form-group">
+    <label for="mod">Javascript-kode</label>
+    <textarea name="mod" id="mod" class="form-control" rows="" placeholder="Her copy-paster du inn javascript-koden til modden du skrev"></textarea>
+   </div>
+  <button type="submit" class="btn btn-default">Last opp</button>
+   </form>
+</body>
+</html>
