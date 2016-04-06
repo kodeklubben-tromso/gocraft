@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"regexp"
 
 	"github.com/gorilla/mux"
 )
@@ -25,6 +26,11 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 	modname := r.FormValue("modname")
 	mod := r.FormValue("mod")
 
+	if badfilename(modname) {
+		http.Error(w, "Hei! Navnet på modden din skal kun ha små bokstaver. Ingen mellomrom eller rare tegn som f.eks ?/.,;;", 500)
+		return
+	}
+
 	userdir := scriptdir + username
 	err := os.MkdirAll(userdir, 0700)
 	if err != nil {
@@ -42,6 +48,19 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("user", username, "uploaded", modname)
 	fmt.Fprintf(w, "Hei "+username+"! Vi har mottatt modden din "+modname+" og installert den! Sjekk om du får kjørt den på mc.cs.uit.no!")
+}
+
+func badfilename(filename string) bool {
+	r, _ := regexp.Compile(`[[:punct:]]`)
+	if r.MatchString(filename) {
+		return true
+	}
+
+	r, _ = regexp.Compile(`[[:blank:]]`)
+	if r.MatchString(filename) {
+		return true
+	}
+	return false
 }
 
 func main() {
